@@ -11,10 +11,32 @@ const url = require('url')
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
+let splashWindow
 
-function createWindow () {
+function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600})
+  mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    backgroundColor: '#0A2435',
+    show: false
+  })
+
+  splashWindow = new BrowserWindow({
+    parent: mainWindow,
+    width: 370,
+    height: 450,
+    frame: false,
+    backgroundColor: '#313131'
+  })
+
+  splashWindow.loadURL(url.format({
+    pathname: path.join(__dirname, 'Splash.html'),
+    protocol: 'file:',
+    slashes: true
+  }))
+
+  splashWindow.show()
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
@@ -23,9 +45,11 @@ function createWindow () {
     slashes: true
   }))
 
-  // Open the DevTools.
-//  mainWindow.webContents.openDevTools()
+  mainWindow.once('ready-to-show', () => {
     mainWindow.maximize()
+    mainWindow.show()
+    setTimeout(function () { splashWindow.close() }, 1000);
+  })
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -34,6 +58,14 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+  
+  // var id = setInterval(function() {
+  //   if(1)
+  //   {
+  //     splashWindow.close()
+  //     clearImmediate(id)
+  //   }
+  // }, 1000);
 }
 
 // This method will be called when Electron has finished
