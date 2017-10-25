@@ -33,6 +33,8 @@ body {
     margin-left: auto;
     margin-right: auto;
     margin-top: 1%;
+    max-width:60%;
+    max-height:60%;
 }
 
 #triangle-left {
@@ -69,7 +71,7 @@ body {
     margin-right: 1%;
 }
 
-.mainBtns {
+.mainBtns { 
     margin-top: 4%;
 }
 
@@ -78,7 +80,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    width: 20%;
+    width: 40%;
 }
 
 .btn {
