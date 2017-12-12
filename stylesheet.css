@@ -2,7 +2,7 @@ body {
     background-color: #0A2435;
 }
 
-#content {
+.content {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -32,15 +32,69 @@ body {
     background-color: #6AB8EB;
 }
 
-#main {
+.main {
+    display: table;
     width: 80%;
     background-color: #0A2435;
     float: right;
     height: 100%;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.main img {
+    width: 35%;
+}
+
+.main a {
+    width: 40%;
+    margin-right: 15px;
+}
+
+.main-content {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.main-content p {
+    font-size: 2vw;
+}
+
+.main-content select {
+    display: inline-block;
+    width: 80%;
+    color: black;
+}
+
+#footer {
+    position: absolute;
+    display: block;
+    bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 80%;
+    background-color: #333;
+    font-size: 1vw;
+    line-height: 1.0;
 }
 
 .bdiv i {
     margin-top: 50%;
     vertical-align: middle;
     font-size: 6vw;
+}
+
+table.highlight>tbody>tr:hover {
+    background-color: #2F688D;
+}
+
+.bindingRow input {
+    width: 80%;
+    text-align: center;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    margin: 0 0 0px 0;
 }

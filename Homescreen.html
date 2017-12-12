@@ -5,39 +5,109 @@
     <link rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="stylesheet" href="material-icons.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> </head>
 
 <body>
-    <div id="content">
+    <div id="app" class="content">
         <div id="sidebar">
-            <a href="#" class="waves-effect waves-light btn">
-                <div class="bdiv">
-                    <i class="material-icons">home</i>
+            <a href="#" v-on:click="homeClick" class="waves-effect waves-light btn">
+                <div class="bdiv"> <i class="material-icons">home</i>
                     <p>Home</p>
                 </div>
             </a>
-            <a href="#" class="waves-effect waves-light btn">
-                <div class="bdiv">
-                    <i class="material-icons">network_wifi</i>
+            <a href="#" v-on:click="connectClick" class="waves-effect waves-light btn">
+                <div class="bdiv"> <i class="material-icons">network_wifi</i>
                     <p>Connectivity</p>
                 </div>
             </a>
-            <a href="#" class="waves-effect waves-light btn">
-                <div class="bdiv">
-                    <i class="material-icons">keyboard</i>
+            <a href="#" v-on:click="bindingsClick" class="waves-effect waves-light btn">
+                <div class="bdiv"> <i class="material-icons">keyboard</i>
                     <p>Key Bindings</p>
                 </div>
             </a>
-            <a href="#" class="waves-effect waves-light btn">
-                <div class="bdiv">
-                    <i class="material-icons">security</i>
+            <a href="#" v-on:click="securityClick" class="waves-effect waves-light btn">
+                <div class="bdiv"> <i class="material-icons">security</i>
                     <p>Security</p>
                 </div>
             </a>
         </div>
-        <div id="main">
 
+        <div class="main">
+            <div v-if="homeP" class="main-content">
+                <div class="valign-wrapper">
+                    <img src="./images/logo.png">
+                    <h2>Welcome to OpenSourceSync</h2>
+                </div>
+                <br/>
+                <a href="#" class="waves-effect waves-light btn">Start</a>
+                <a href="#" class="waves-effect waves-light btn">Stop</a>
+                <div id="footer">
+                    <p>Status: Inactive</p>
+                </div>
+            </div>
+            <div v-if="connectP" class="main-content">
+                <p>Select number of PCs</p>
+                <select v-model="pcCount">
+                    <option disabled value="">Please select one</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+
+                <div class="container">
+                    <br/>
+                    <table class="highlight centered">
+                        <thead>
+                            <tr>
+                                <th>PC Name</th>
+                                <th>IP Address</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="item in selectList">
+                                <td> {{item.name}} </td>
+                                <td> {{item.ip}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="footer">
+                    <p>Status: Inactive</p>
+                </div>
+            </div>
+            <div v-if="bindingsP" class="main-content">
+                <div class="container">
+                    <br/>
+                    <table class="highlight centered">
+                        <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>Key Binding</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bindingRow" v-for="item in bindingList">
+                                <td> {{item.action}} </td>
+                                <td contenteditable="true"><input v-model="item.binding"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="footer">
+                    <p>Status: Inactive</p>
+                </div>
+            </div>
+            <div v-if="securityP" class="main-content">
+                <p>Password</p>
+                <a href="#" class="waves-effect waves-light btn">Show</a>
+                <a href="#" class="waves-effect waves-light btn">Change</a>
+                <br/>
+                <p>SSL Encryption</p>
+                <button class="waves-effect waves-light btn" style="width: 80%;" v-on:click="toggleSSL"> {{ sslState }} </button>
+                <div id="footer">
+                    <p>Status: Inactive</p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -45,8 +115,10 @@
         window.$ = window.jQuery = require('./jquery.min.js');
 
     </script>
+    <script type="text/javascript" src="js/vue.js"></script>
     <script type="text/javascript" src="./hammer.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
 </body>
 
 </html>

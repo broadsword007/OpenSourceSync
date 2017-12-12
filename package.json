@@ -6,13 +6,14 @@
   "scripts": {
     "start": "electron .",
     "pack": "build --dir",
-  	"dist": "build"
+    "dist": "build"
   },
   "build": {
-  "appId": "60351"
-},
+    "appId": "60351"
+  },
   "author": "Ali60351",
   "devDependencies": {
-    "electron": "^1.4.1"
+    "electron": "^1.4.1",
+    "vue-devtools": "^3.1.9"
   }
 }
