@@ -76,6 +76,12 @@ var app = new Vue({
         searchDevices: function () {
             this.connectP = false;
             this.selectingP = true;
+        },
+        addSelected: function (item) {
+            this.connectedList.push({
+                name: item.name,
+                ip: item.ip
+            });
         }
     }
 });

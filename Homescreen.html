@@ -131,11 +131,12 @@
                             <tr v-for="item in selectList">
                                 <td> {{item.name}} </td>
                                 <td> {{item.ip}} </td>
-                                <td><a href="#" class="waves-effect waves-light btn">Add</a></td>
+                                <td><a href="#" class="waves-effect waves-light btn" v-on:click="addSelected(item)">Add</a></td>
                             </tr>
                         </tbody>
                     </table>
                     <br/>
+                    <a href="#" v-on:click="connectClick" class="waves-effect waves-light btn" style="width:100%;">Back</a>
                 </div>
                 <div class="footer">
                     <p>Status: Inactive</p>
