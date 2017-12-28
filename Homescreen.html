@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="stylesheet" href="material-icons.css">
+    <link rel="stylesheet" href="css/animation.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OpenSourceSync</title>
 </head>
@@ -13,22 +14,26 @@
     <div id="app" class="content">
         <div id="sidebar">
             <a href="#" v-on:click="homeClick" class="waves-effect waves-light btn">
-                <div class="bdiv"> <i class="material-icons">home</i>
+                <div class="bdiv">
+                    <i class="material-icons">home</i>
                     <p>Home</p>
                 </div>
             </a>
             <a href="#" v-on:click="connectClick" class="waves-effect waves-light btn">
-                <div class="bdiv"> <i class="material-icons">network_wifi</i>
+                <div class="bdiv">
+                    <i class="material-icons">network_wifi</i>
                     <p>Connectivity</p>
                 </div>
             </a>
             <a href="#" v-on:click="bindingsClick" class="waves-effect waves-light btn">
-                <div class="bdiv"> <i class="material-icons">keyboard</i>
+                <div class="bdiv">
+                    <i class="material-icons">keyboard</i>
                     <p>Key Bindings</p>
                 </div>
             </a>
             <a href="#" v-on:click="securityClick" class="waves-effect waves-light btn">
-                <div class="bdiv"> <i class="material-icons">security</i>
+                <div class="bdiv">
+                    <i class="material-icons">security</i>
                     <p>Security</p>
                 </div>
             </a>
@@ -66,12 +71,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="item in selectList">
+                            <tr v-for="item in connectedList">
                                 <td> {{item.name}} </td>
                                 <td> {{item.ip}} </td>
                             </tr>
                         </tbody>
                     </table>
+                    <br/>
+                    <transition name="slide">
+                        <div v-if="loading" class="sk-folding-cube">
+                            <div class="sk-cube1 sk-cube"></div>
+                            <div class="sk-cube2 sk-cube"></div>
+                            <div class="sk-cube4 sk-cube"></div>
+                            <div class="sk-cube3 sk-cube"></div>
+                        </div>
+                    </transition>
+                    <a href="#" v-on:click="searchDevices" class="waves-effect waves-light btn" style="width:100%;">Add a PC</a>
                 </div>
                 <div class="footer">
                     <p>Status: Inactive</p>
@@ -90,10 +105,37 @@
                         <tbody>
                             <tr class="bindingRow" v-for="item in bindingList">
                                 <td> {{item.action}} </td>
-                                <td contenteditable="true"><input v-model="item.binding"></td>
+                                <td contenteditable="true">
+                                    <input v-model="item.binding">
+                                </td>
                             </tr>
                         </tbody>
                     </table>
+                </div>
+                <div class="footer">
+                    <p>Status: Inactive</p>
+                </div>
+            </div>
+            <div v-if="selectingP" class="main-content">
+                <div class="container">
+                    <br/>
+                    <table class="highlight centered">
+                        <thead>
+                            <tr>
+                                <th>PC Name</th>
+                                <th>IP Address</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="item in selectList">
+                                <td> {{item.name}} </td>
+                                <td> {{item.ip}} </td>
+                                <td><a href="#" class="waves-effect waves-light btn">Add</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br/>
                 </div>
                 <div class="footer">
                     <p>Status: Inactive</p>
@@ -115,7 +157,6 @@
 
     <script>
         window.$ = window.jQuery = require('./jquery.min.js');
-
     </script>
     <script type="text/javascript" src="js/vue.js"></script>
     <script type="text/javascript" src="./hammer.min.js"></script>
