@@ -8,6 +8,7 @@ function handleClipboardChange(latestClipboardContent)
     {
         throw("handleClipboardChange called but connectionModule is not initialized")
     }
+    console.log("ClipBoard change event has occured")
     //-----------clipboardy.write(latestClipboardContent)
     // TODO ask the connection module to send a message to all other connected devices to set their local
     // clipboard to [latestClipboardContent]
@@ -18,8 +19,10 @@ function listenClipboard()
     {
         throw("listenClipboard called but connectionModule is not initialized")
     }
-    var new_clip = clipboardy.read()
-    if (new_clip !== clipboard_content) {
+    var new_clip = clipboardy.readSync()
+    if (new_clip != clipboard_content)
+    {
+        console.log("Old clipboard: ", clipboard_content, " and new Clipboard: ", new_clip)
         clipboard_content = new_clip
         handleClipboardChange(clipboard_content)
     }

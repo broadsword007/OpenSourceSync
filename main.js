@@ -1,5 +1,5 @@
 const electron = require('electron')
-var conn = require('./js/test')
+var conn = require('./js/connection_module.js')
 var $ = jQuery = require('./jquery.min.js')
 
 /*const hook = require('iohook')
