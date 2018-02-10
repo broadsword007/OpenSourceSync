@@ -17,13 +17,12 @@
     "vue-devtools": "^3.1.9"
   },
   "dependencies": {
-    "bonjour": "^3.5.0",
-    "clipboard": "^1.7.1",
     "global": "^4.3.2",
     "jshint": "^2.9.5",
+    "robotjs": "0.4.7",
+    "bonjour": "^3.5.0",
     "node-cmake": "^2.3.2",
-    "node-gyp": "^3.6.2",
-    "robotjs": "0.4.7"
+    "node-gyp": "^3.6.2"
   },
   "iohook": {
     "targets": [
