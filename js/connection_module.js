@@ -1,4 +1,3 @@
-const hook = require('iohook')
 const path = require('path')
 const url = require('url')
 const os = require('os')

@@ -8,8 +8,8 @@ function startIOHookKeyboardHandlers()
     }
     hook = new require('iohook')
     console.log("Attaching IOHook Keyboard")
-    /*hook.on("mousemove", event => {
-        connectionModule.sendMouseMovementEventToAllConnected(event)
+    /*hook.on("keboardevent", event => {
+        connectionModule.sendKeyboardEventToAllConnected(event)
     });*/
     // TODO detect keyboard events and ask the connection_module to pass them on the other systems
     hook.start();
